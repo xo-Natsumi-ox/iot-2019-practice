@@ -7,77 +7,77 @@ using namespace std;
 
 class Matrix{
 private:
-    int Arr[5];
+    int columnofmatrix[5];
 public:
-    friend void vvid(Matrix arr[]);
-    friend void vuvid(Matrix arr[]);
-    friend void sortuv(Matrix arr[]);
-    friend void func(Matrix arr[]);
+    friend void input(Matrix rowofmatrix[]);
+    friend void output(Matrix rowofmatrix[]);
+    friend void mergesort(Matrix rowofmatrix[]);
+    friend void minandaveragevalue(Matrix rowofmatrix[]);
 };
 
-void vvid(Matrix  arr[]){
-    for (int a = 0; a < 5; a++)
+void input(Matrix  rowofmatrix[]){
+    for (int column = 0; column < 5; column++)
         {
-			 for (int b = 0; b < 5; b++){
-            cout << "[" << a + 1 << "][" << b + 1  << "] = ";
-            cin>>arr[a].Arr[b];
+			 for (int row = 0; row < 5; row++){
+            cout << "[" << column + 1 << "][" << row + 1  << "] = ";
+            cin>>rowofmatrix[column].columnofmatrix[row];
 			 }
 
 }}
-void vuvid(Matrix  arr[]){
-	for (int a=0;a<5;a++){
-		for (int b=0;b<5;b++){
+void output(Matrix  rowofmatrix[]){
+	for (int column = 0; column < 5; column++){
+		for (int row = 0; row < 5; row++){
 		
-		cout<<arr[a].Arr[b]<<" ";
+		cout<<rowofmatrix[column].columnofmatrix[row]<<" ";
 	}
 	cout <<endl;
 }}
 
-void sortuv(Matrix  arr[])
+void mergesort(Matrix  rowofmatrix[])
 {
-for (int a = 0; a < 5; a++)
+for (int column = 0; column < 5; column++)
 {
-for (int Size = 1; Size < 5; Size *= 2)
+for (int arraydividing = 1; arraydividing < 5; arraydividing *= 2)
 {
-for (int Iterator = 0; Iterator < 5 - Size; Iterator += 2 * Size)
+for (int iterator = 0; iterator < 5 - arraydividing; iterator += 2 * arraydividing)
 {
-int LeftIter = 0;
-int RightIter = 0;
-int Left = Iterator;
-int Mid = Iterator + Size;
-int Right = Iterator + 2 * Size;
-Right = (Right < 5) ? Right : 5;
-int* Sort = new int[Right - Left];
+int leftiterator = 0;
+int rightiterator = 0;
+int left = iterator;
+int middle = iterator + arraydividing;
+int right = iterator + 2 * arraydividing;
+right = (right < 5) ? right : 5;
+int* sort = new int[right - left];
 
-while (Left + LeftIter < Mid && Mid + RightIter < Right)
+while (left + leftiterator < middle && middle + rightiterator < right)
 {
-if (arr[Left + LeftIter].Arr[a] > arr[Mid + RightIter].Arr[a])
+if (rowofmatrix[left + leftiterator].columnofmatrix[column] > rowofmatrix[middle + rightiterator].columnofmatrix[column])
 {
-Sort[LeftIter + RightIter] = arr[Left + LeftIter].Arr[a];
-LeftIter++;
+sort[leftiterator + rightiterator] = rowofmatrix[left + leftiterator].columnofmatrix[column];
+leftiterator++;
 }
 else
 {
-Sort[LeftIter + RightIter] = arr[Mid + RightIter].Arr[a];
-RightIter++;
+sort[leftiterator + rightiterator] = rowofmatrix[middle + rightiterator].columnofmatrix[column];
+rightiterator++;
 }
 }
-while (Left + LeftIter < Mid)
+while (left + leftiterator < middle)
 {
-Sort[LeftIter + RightIter] = arr[Left + LeftIter].Arr[a];
-LeftIter++;
+sort[leftiterator + rightiterator] = rowofmatrix[left + leftiterator].columnofmatrix[column];
+leftiterator++;
 }
-while (Mid + RightIter < Right)
+while (middle + rightiterator < right)
 {
-Sort[LeftIter + RightIter] = arr[Mid + RightIter].Arr[a];
-RightIter++;
+sort[leftiterator + rightiterator] = rowofmatrix[middle + rightiterator].columnofmatrix[column];
+rightiterator++;
 }
 
-for (int MergeIter = 0; MergeIter < LeftIter + RightIter; MergeIter++)
+for (int mergeiterator = 0; mergeiterator < leftiterator + rightiterator; mergeiterator++)
 {
-arr[Left + MergeIter].Arr[a] = Sort[MergeIter];
+rowofmatrix[left + mergeiterator].columnofmatrix[column] = sort[mergeiterator];
 }
-delete Sort;
+delete sort;
 
 }
 
@@ -85,33 +85,34 @@ delete Sort;
 }}
 
 
-void func(Matrix arr[]) {
-	int ser=0;
-int a=0;
-int b=0;
-	int lol=1;
+void minandaveragevalue(Matrix rowofmatrix[]) {
+	int additionminimalnumbers = 0;
+int column = 0;
+int row = 0;
+	int numbercolumn=1;
 
-    for ( b = 0; b < 5 ; b++)
+    for ( row = 0; row < 5 ; row++)
 	{
-		   cout<<"minimal znach stovpcya "<<lol++<<" = "<<arr[4].Arr[b]<<endl;
-	ser =ser + arr[4].Arr[b];
+		   cout<<"minimal number of column "<<numbercolumn++<<" = "<<rowofmatrix[4].columnofmatrix[row]<<endl;
+	additionminimalnumbers =additionminimalnumbers + rowofmatrix[4].columnofmatrix[row];
 	}
-	float sered=ser;
-	float znach=sered/5;
-        cout<<"seredne znachennya = "<<znach<< endl;}
+	float inttofloat= additionminimalnumbers;
+	float averagevalue=inttofloat/5;
+        cout<<"average value = "<<averagevalue<< endl;
+}
 	
 
 void main()
 {
     Matrix array[5];
     cout << endl;
-    vvid(array);
+    input(array);
     cout << "matrix " << endl;
-    vuvid(array);
-	cout<<endl;
-    sortuv(array);
-    cout << "Sortovan matrix " << endl;
-    vuvid(array);
+    output(array);
+    cout<<endl;
+    mergesort(array);
+    cout << "Sorted matrix " << endl;
+    output(array);
     cout << endl;
-    func(array);
+    minandaveragevalue(array);
 }
